@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Builder.Enums;
+
+using System;
 using System.Linq;
 
 namespace Builder
@@ -8,9 +10,9 @@ namespace Builder
     /// </summary> 
     class Waiter
     {
-        private PizzaBuilder pizzaBuilder;
+        private readonly IPizzaBuilder pizzaBuilder;
 
-        public void SetPizzaBuilder(PizzaBuilder pb)
+        public Waiter(IPizzaBuilder pb)
         {
             pizzaBuilder = pb;
         }
@@ -22,18 +24,16 @@ namespace Builder
             return pizza;
         }
 
-        public void ConstructPizza()
+        public void Construct()
         {
-            pizzaBuilder.CreateNewPizza();
-            pizzaBuilder.BuildDough();
-            pizzaBuilder.BuildSauce();
-            pizzaBuilder.BuildTopping();
+            pizzaBuilder.Sauce = SauceTypes.Hot;
+            pizzaBuilder.Dough = DoughTypes.Cross;
         }
 
         public void PrintPizza(Pizza pizza)
         {
             Console.WriteLine("*************************** New Pizza ***************************");
-            Console.WriteLine();
+            Console.WriteLine(pizza.Type.ToString());
             Console.WriteLine("Dough:- " + (pizza.Dough.HasValue ? pizza.Dough.ToString() : "N/A"));
             Console.WriteLine("Sauce:- " + (pizza.Sauce.HasValue ? pizza.Sauce.ToString() : "N/A"));
             Console.Write("Toppings:- ");

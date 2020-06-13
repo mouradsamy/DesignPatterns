@@ -5,21 +5,19 @@ namespace Builder
     /// <summary>
     /// Builder Pattern: (Concrete Builder)
     /// </summary>
-    public class HawaiianPizzaBuilder : PizzaBuilder
+    public class HawaiianPizzaBuilder : IPizzaBuilder
     {
-        public override void BuildDough()
-        {
-            pizza.Dough = DoughTypes.PanBaked;
-        }
+        public PizzaTypes Type => PizzaTypes.Hawaiian;
+        public SauceTypes Sauce { get; set; }
+        public DoughTypes Dough { get; set; }
 
-        public override void BuildSauce()
+        public Pizza GetPizza()
         {
-            pizza.Sauce = SauceTypes.Mild;
-        }
+            Sauce = SauceTypes.Mild;
+            Dough = DoughTypes.Cross;
+            var toppings = new[] { ToppingTypes.Pineapple, ToppingTypes.Salami };
 
-        public override void BuildTopping()
-        {
-            pizza.Toppings = new[] { ToppingTypes.Pineapple, ToppingTypes.Salami };
+            return new Pizza(Type, Dough, Sauce, toppings);
         }
     }
 }
