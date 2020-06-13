@@ -1,13 +1,13 @@
-﻿using Builder.Enums;
+﻿using Common.Enums;
 
-namespace Builder
+namespace Builder.PizzaExample
 {
     /// <summary>
     /// Builder Pattern: (Abstract Builder)
     /// </summary>
     public interface IPizzaBuilder
     {
-        public PizzaTypes Type { get; }
+        public PizzaNames Name { get; }
         public SauceTypes Sauce { get; set; }
         public DoughTypes Dough { get; set; }
 

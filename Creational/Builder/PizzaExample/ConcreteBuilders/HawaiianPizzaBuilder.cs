@@ -1,23 +1,23 @@
-﻿using Builder.Enums;
+﻿using Common.Enums;
 
-namespace Builder
+namespace Builder.PizzaExample
 {
     /// <summary>
     /// Builder Pattern: (Concrete Builder)
     /// </summary>
     public class HawaiianPizzaBuilder : IPizzaBuilder
     {
-        public PizzaTypes Type => PizzaTypes.Hawaiian;
+        public PizzaNames Name => PizzaNames.NYStyleCheesePizza;
         public SauceTypes Sauce { get; set; }
         public DoughTypes Dough { get; set; }
 
         public Pizza GetPizza()
         {
-            Sauce = SauceTypes.Mild;
-            Dough = DoughTypes.Cross;
+            Sauce = SauceTypes.Marinara;
+            Dough = DoughTypes.ExtraThickCrust;
             var toppings = new[] { ToppingTypes.Pineapple, ToppingTypes.Salami };
 
-            return new Pizza(Type, Dough, Sauce, toppings);
+            return new Pizza(Name, Dough, Sauce, toppings);
         }
     }
 }

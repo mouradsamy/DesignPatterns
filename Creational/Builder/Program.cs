@@ -1,10 +1,17 @@
-﻿using System.Threading;
+﻿using Builder.PizzaExample;
+
+using System.Threading;
 
 namespace Builder
 {
     public class Program
     {
         static void Main(string[] args)
+        {
+            RunPizzaExample();
+        }
+
+        private static void RunPizzaExample()
         {
             IPizzaBuilder spicyPizzabuilder;
             IPizzaBuilder hawaiianPizzabuilder;
@@ -28,7 +35,6 @@ namespace Builder
             waiter = new Waiter(spicyPizzabuilder);
             waiter.Construct();
             waiter.GetPizza();
-
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Factory
+namespace Common
 {
     public class Class1
     {

@@ -1,9 +1,10 @@
-﻿using Builder.Enums;
+﻿using Common.Enums;
+using Common.Extensions;
 
 using System;
 using System.Linq;
 
-namespace Builder
+namespace Builder.PizzaExample
 {
     /// <summary>
     /// Builder Pattern: (Director)
@@ -26,16 +27,16 @@ namespace Builder
 
         public void Construct()
         {
-            pizzaBuilder.Sauce = SauceTypes.Hot;
-            pizzaBuilder.Dough = DoughTypes.Cross;
+            pizzaBuilder.Sauce = SauceTypes.Marinara;
+            pizzaBuilder.Dough = DoughTypes.ExtraThickCrust;
         }
 
         public void PrintPizza(Pizza pizza)
         {
             Console.WriteLine("*************************** New Pizza ***************************");
-            Console.WriteLine(pizza.Type.ToString());
-            Console.WriteLine("Dough:- " + (pizza.Dough.HasValue ? pizza.Dough.ToString() : "N/A"));
-            Console.WriteLine("Sauce:- " + (pizza.Sauce.HasValue ? pizza.Sauce.ToString() : "N/A"));
+            Console.WriteLine(EnumExtensions<PizzaNames>.GetDisplayValue(pizza.Name));
+            Console.WriteLine("Dough:- " + pizza.Dough);
+            Console.WriteLine("Sauce:- " + pizza.Sauce);
             Console.Write("Toppings:- ");
             if (pizza.Toppings.Length > 0)
             {
